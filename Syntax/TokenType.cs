@@ -1,0 +1,33 @@
+﻿namespace SoulLang
+{
+    public enum TokenType
+    {
+        Identifier,
+        IfKeyword,
+        ElseKeyword,
+        FuncKeyword,
+        Integer,
+        String,
+        EndOfFile,
+        OpenParen,
+        CloseParen,
+        OpenBrace,
+        CloseBrace,
+        Add,
+        Sub,
+        Mul,
+        Div,
+        SemiColon,
+        Equal,
+        NotEqual,
+        Greater,
+        Less,
+        LessEq,
+        GreatEq,
+        Or,
+        And,
+        Assign,
+        Excl,
+        Unkown,
+    }
+}
