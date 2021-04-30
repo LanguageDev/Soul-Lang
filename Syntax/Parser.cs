@@ -165,18 +165,12 @@ namespace SoulLang
             Expect(TokenType.IfKeyword);
             var cond = Parse_statement();
             var then = Parse_block();
-            // C# can't deduce var for null, since it can be any nullable type
             Expression els = null;
             if (Accept(TokenType.ElseKeyword))
             {
                 els = Parse_block();
             }
-            // Yeah lets test it
-            // I cant since this is on your machine.
-            // I've already uploaded a repo to our org, you can copy that gitignore and just upload this to the org
-            // You have rights to create repos there I think
             return new IfExpr { Cond = cond, Then = then, Else = els };
-            // gonna save first
         }
 
         public Expression Parse_expr()
