@@ -1,8 +1,5 @@
 ﻿using System;
-// should we put it in binop?
-// Yeah
-// can you not compare String to String?
-// You can, you are just trying to stuff a bool into an int and a string value :P
+
 namespace SoulLang
 {
     public class TreeEvaluator
@@ -89,7 +86,7 @@ namespace SoulLang
                             }
                             // Should be bool value
                             return new BoolValue(left.ToString() == right.ToString());
-                        } // could you try to do the other ones as well?
+                        } 
                         else if (binOp.Operator == TokenType.Greater)
                         {
                             var left = Evaluate(binOp.Left);
@@ -187,18 +184,12 @@ namespace SoulLang
 
                 case IfExpr ifExpr:
                     {
-                        // It isn't too tricky, will you give it a try?
-                        // kk
-                        // Ok start, but don't pre-evaluate then and else
-                        // You only eval them wehen needed
-                        var cond = Evaluate(ifExpr.Cond); //brb gotta send an email
+                        var cond = Evaluate(ifExpr.Cond);
                         var then = ifExpr.Then;
                         var els = ifExpr.Else;
-                        if (cond is BoolValue bv && bv.Value) // gotta check if it's true
+                        if (cond is BoolValue bv && bv.Value)
                         {
-                            // It's fine, should work!
-                            // Yeah
-                            return Evaluate(ifExpr.Then); // time to put it in the parser
+                            return Evaluate(ifExpr.Then);
                         }
                         else if (els != null)
                         {
