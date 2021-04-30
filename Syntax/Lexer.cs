@@ -27,7 +27,6 @@ namespace SoulLang
             { "else", TokenType.ElseKeyword },
             { "func", TokenType.FuncKeyword },
         };
-        // Wait! dont do parse statements quiet yet lol, im sorry
         private string source;
         private int index;
         private Position position;
@@ -48,7 +47,6 @@ namespace SoulLang
             if (char.IsWhiteSpace(Peek()))
             {
                 Skip();
-                // Goto might feel cheeky here, it's actually a bit more sensical here then a while loop
                 goto begin;
             }
             // Comments
@@ -115,17 +113,12 @@ namespace SoulLang
             case '{': return Consume(TokenType.OpenBrace, 1);
             case '}': return Consume(TokenType.CloseBrace, 1);
             case ';': return Consume(TokenType.SemiColon, 1);
-                // Yeah here you need to look ahead 1 character to see if its also a =
-                // You do it with condition ? then : else instead of if-else
             case '=': return (Peek(1) == '=') ? Consume(TokenType.Equal, 2) : Consume(TokenType.Assign, 1);
             case '!': return (Peek(1) == '=') ? Consume(TokenType.NotEqual, 2) : Consume(TokenType.Excl, 1);
             case '>': return (Peek(1) == '=') ? Consume(TokenType.GreatEq, 2) : Consume(TokenType.Greater, 1);
             case '<': return (Peek(1) == '=') ? Consume(TokenType.LessEq, 2) : Consume(TokenType.Less, 1);
             case '&': return (Peek(1) == '&') ? Consume(TokenType.And, 2) : Consume(TokenType.Unkown, 1);
             case '|': return (Peek(1) == '|') ? Consume(TokenType.Or, 2) : Consume(TokenType.Unkown, 1);
-                // Cool, looks fine
-                // So we just add functionality now?
-                // Yeah, after the parser can recognize these as binary tokens, you handle them in the evaluator
             }
             throw new InvalidOperationException($"Could not recognize token starting with '{Peek()}'");
         }
